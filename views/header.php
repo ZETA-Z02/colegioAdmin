@@ -7,7 +7,7 @@
   <title>Katari | Welcome</title>
 
   <!-- <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css"> -->
-  <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/foundation.css">
+  <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/foundation/css/foundation.css">
   <link rel="stylesheet" href="<?php echo constant('URL'); ?>public/css/main.css">
   <!-- If you are using the gem version, you need this only -->
 
