@@ -13,10 +13,10 @@ class App
 
     if (empty($url[0])) {
 
-      $archivoController = "controller/main.php";
+      $archivoController = "controller/dashboard.php";
       require_once $archivoController;
-      $controller = new main;
-      $controller->loadModel('main');
+      $controller = new dashboard;
+      $controller->loadModel('dashboard');
       $controller->render();
       return false;
     }
