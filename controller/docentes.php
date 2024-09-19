@@ -1,8 +1,7 @@
 <?php
 
-class Cursos extends Controller
+class Docentes extends Controller
 {
-
 	function __construct()
 	{
 		parent::__construct();
@@ -10,15 +9,9 @@ class Cursos extends Controller
 
 	function render()
 	{
-		$datos = $this->model->listaCursos();
-        $this->view->data2 = $datos;
-
-		$datos = $this->model->listarHorarios();
-        $this->view->data3 = $datos;
-
-		$this->view->Render('cursos/index');
+		$this->view->Render('docentes/index');
 	}
-	public function create(){
+    public function create(){
         //Function para crear un nuevo registro
     }
     public function read(){
