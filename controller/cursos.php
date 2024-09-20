@@ -18,6 +18,13 @@ class Cursos extends Controller
 
 		$this->view->Render('cursos/index');
 	}
-
+	function horarios()
+	{
+		$this->view->Render('cursos/horarios');
+	}
+	function cursos()
+	{
+		$this->view->Render('cursos/cursos');
+	}
 
 }

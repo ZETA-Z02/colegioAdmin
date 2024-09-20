@@ -8,16 +8,16 @@
         <div class="grid-x grid-padding-x text-center">
         <div class="cell small-12 medium-6 large-6">
             <h5>ingresar curso</h5>
-            <a class="button success rounded-border" href="<?php echo constant('URL') ?>ingreso/nuevo">Nuevo</a>
+            <a class="button success rounded-border" href="<?php echo constant('URL') ?>cursos/cursos">Nuevo</a>
 
         </div>
         <div class="cell small-12 medium-6 large-6">
             <h5>ingresar horario</h5>
-            <a class="button success rounded-border" href="<?php echo constant('URL') ?>ingreso/nuevo">Nuevo</a>
+            <a class="button success rounded-border" href="<?php echo constant('URL') ?>cursos/horarios">Nuevo</a>
         </div>
         </div>
 <hr>
-<div class="grid-x grid-padding-x text-center">
+<div class="grid-x grid-padding-x">
         <div class="cell small-12 medium-6 large-8">
             <h5>cursos</h5>
             <table >
@@ -39,7 +39,7 @@
             echo "<tr>
                     <td>".$row['idcurso']."</td>
                     <td>".$row['curso']."</td>
-                    <td>".$row['idmaestro']."</td>
+                    <td>".$row['nombre']."</td>
 					<td>".$row['idgrado']."</td>
 					<td>".$row['idseccion']."</td>
 					<td>".$row['idturno']."</td>
