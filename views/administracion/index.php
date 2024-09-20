@@ -1,1 +1,0 @@
-<h1>Administracion panel</h1>

@@ -18,18 +18,6 @@ class Cursos extends Controller
 
 		$this->view->Render('cursos/index');
 	}
-	public function create(){
-        //Function para crear un nuevo registro
-    }
-    public function read(){
-        //Function para leer los registros
-    }
-    public function update(){
-        //Function para actualizar un registro
-    }
-    public function delete(){
-        //Funtion para eliminar un registro
-    }
 
 
 }
