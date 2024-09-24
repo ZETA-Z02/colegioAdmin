@@ -4,22 +4,43 @@ Class Cursosmodel extends Model{
         parent::__construct();
     }
     public function listaCursos(){
-        $sql = "SELECT * FROM colegio_cursos;";
-        $data = $this->conn->ConsultaCon($sql);
-        return $data;
-    }
-
-    public function listarHorarios() {
-        $sql = "SELECT cc.*, cg.*, ms.*, sc.*, tr.*, hr.*
-            FROM colegio_cursos cc
+        $sql = "SELECT cc.*, cg.*, ms.*, sc.*, tr.*, hr.* FROM colegio_cursos cc 
             JOIN colegio_grado cg ON cc.idgrado = cg.idgrado
             JOIN maestros ms ON cc.idmaestro = ms.idmaestro
             JOIN colegio_seccion sc ON cc.idseccion = sc.idseccion
             JOIN colegio_turno tr ON cc.idturno = tr.idturno
             JOIN colegio_horario hr ON cc.idhorario = hr.idhorario;
-            ";
+;";
         $data = $this->conn->ConsultaCon($sql);
         return $data;
     }
+
+    public function ListarHorario(){
+        $sql = "select * from colegio_horario; ";
+        $data = $this->conn->ConsultaCon($sql);
+        return $data;
+    }
+
+    function insertHorario($horario, $status)
+    {
+        $sql = "INSERT INTO colegio_horario (horario, status) VALUES ('$horario', $status);";
+        $res = $this->conn->ConsultaSin($sql);
+        return $res;
+    }
+
+    public function Deletehorario($id)
+    {
+        $sql = "DELETE FROM `colegio_horario` WHERE (`idhorario` = '$id');";
+        $res = $this->conn->ConsultaSin($sql);
+        return $res;
+    }   
+
+    public function Deletecurso($id)
+    {
+        $sql = "DELETE FROM `colegio_cursos` WHERE (`idcurso` = '$id');";
+        $res = $this->conn->ConsultaSin($sql);
+        return $res;
+    }   
+
 }
 ?>

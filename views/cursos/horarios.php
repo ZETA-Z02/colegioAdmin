@@ -3,16 +3,23 @@
 <hr>
   <div class="grid-container">
 
-  <form action="<?php echo constant('URL') ?>entrega/entidadCreate" method="POST" enctype="multipart/form-data">
+  <form action="<?php echo constant('URL') ?>cursos/createhorario" method="POST" enctype="multipart/form-data">
     <div class="grid-x grid-padding-x">
       <div class="cell text-center">
         <h4 class="header">Registrar un nuevo horario</h4>
       </div>      
     </div>
       <div class="grid-x grid-padding-x align-center">
-      <div class="cell small-12 medium-6 large-">
-        <label for="entidad">Ingrese Horario
-          <input type="text" name="entidad" id="entidad" placeholder="00:00:00" required>
+      <div class="cell small-12 medium-6 large-6">
+        <label for="horario">Ingrese Horario
+          <input type="text" name="horario" id="horario" placeholder="00:00:00" required>
+        </label>
+      </div>
+    </div>
+    <div class="grid-x grid-padding-x align-center">
+      <div class="cell small-12 medium-6 large-6">
+        <label for="status">Ingrese Estatus
+          <input type="text" name="status" id="status" placeholder="0" required>
         </label>
       </div>
     </div>
