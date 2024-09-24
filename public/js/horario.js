@@ -5,6 +5,7 @@ $(document).ready(function () {
   listcurso();
   eliminarH();
   eliminarC();
+  postIngresoC();
 });
 
 

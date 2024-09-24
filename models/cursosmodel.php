@@ -42,5 +42,47 @@ Class Cursosmodel extends Model{
         return $res;
     }   
 
+    function insertCurso($curso,$idmaestro,$idgrado,$idseccion,$idturno,$idhorario,$status)
+    {
+        $sql = "INSERT INTO colegio_cursos VALUES (null,'$curso','$idmaestro','$idgrado','$idseccion','$idturno','$idhorario','$status');";
+        $res = $this->conn->ConsultaSin($sql);
+        return $res;
+    }
+
+    function ListaMaestro()
+    {
+        $sql = "SELECT idmaestro, nombre FROM maestros;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function ListaGrado()
+    {
+        $sql = "SELECT idgrado, grado FROM colegio_grado;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function ListaSeccion()
+    {
+        $sql = "SELECT idseccion, seccion FROM colegio_seccion;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function ListaTurno()
+    {
+        $sql = "SELECT idturno, turno FROM colegio_turno;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function ListaHorario()
+    {
+        $sql = "SELECT idhorario, horario FROM colegio_horario;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
 }
 ?>
