@@ -15,7 +15,7 @@
         <div class="cell small-12 medium-12 large-12">
             <h5>HORARIOS</h5>
             <div class="grid-x text-center">
-		<table border="3">
+		<table border="3" class="stack">
 			<thead>
 				<tr>
 					<th class="text-center">N°</th>
