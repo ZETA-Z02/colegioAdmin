@@ -9,7 +9,7 @@ Class Cursosmodel extends Model{
             JOIN maestros ms ON cc.idmaestro = ms.idmaestro
             JOIN colegio_seccion sc ON cc.idseccion = sc.idseccion
             JOIN colegio_turno tr ON cc.idturno = tr.idturno
-            JOIN colegio_horario hr ON cc.idhorario = hr.idhorario;
+            JOIN colegio_horario hr ON cc.idhorario = hr.idhorario ORDER BY idcurso ASC;
 ;";
         $data = $this->conn->ConsultaCon($sql);
         return $data;
