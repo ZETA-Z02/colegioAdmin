@@ -24,7 +24,7 @@ class Conexion
   public function ConsultaSin($sql)
   {
     # Sirve para: INSERT, UPDATE, DELETE
-    echo $sql;
+    // echo $sql;
 
     if (!$this->conn->query($sql)) {
       echo "Error. " . mysqli_error($this->conn);
