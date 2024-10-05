@@ -53,7 +53,7 @@
                 </a>
               </li>
               <li>
-                <a href="<?php echo constant('URL') ?>profesores">
+                <a href="<?php echo constant('URL') ?>maestros">
                   <i class="fas fa-users-cog"></i>
                   <span class="nav-item">Profesores</span>
                 </a>
