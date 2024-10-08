@@ -38,7 +38,7 @@
             <a class="button" href="escribirse_cursos.php">Escribirse</a>
         </div>
         -->
-         
+        
 	</div>
 
 <?php require ('views/footer.php');?>
