@@ -1,9 +1,7 @@
 <?php require ('views/header.php');?>
 <br>
-<link rel="stylesheet" href="<?php echo constant('URL') ?>public/css/entidad.css">
   <div class="grid-container">
-
-  <form action="<?php echo constant('URL') ?>cursos/createC" method="POST" enctype="multipart/form-data" id="ingresoC">
+  <form action="<?php echo constant('URL') ?>cursos/createC" method="POST" enctype="multipart/form-data">
     <div class="grid-x grid-padding-x text-center">
       <div class="cell">
         <h4 class="header">Registrar un nuevo curso</h4>

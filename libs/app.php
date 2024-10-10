@@ -10,7 +10,7 @@ class App
     @$url = $_GET['url'];
     @$url = rtrim($url, '/');
     $url = explode('/', $url);
-    echo var_dump($url);
+    // echo var_dump($url);
     if (empty($url[0])) {
 
       $archivoController = "controller/dashboard.php";

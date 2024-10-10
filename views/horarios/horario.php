@@ -1,9 +1,8 @@
 <?php require ('views/header.php');?>
 <br>
-<hr>
   <div class="grid-container">
 
-  <form action="<?php echo constant('URL') ?>cursos/createhorario" method="POST" enctype="multipart/form-data">
+  <form action="<?php echo constant('URL') ?>horarios/createhorario" method="POST" enctype="multipart/form-data">
     <div class="grid-x grid-padding-x">
       <div class="cell text-center">
         <h4 class="header">Registrar un nuevo horario</h4>
@@ -29,8 +28,5 @@
         </div>        
   </form>
   </div>
-
-
-<script src="<?php echo constant('URL'); ?>public/js/entrega.js"></script> 
 
 <?php require ('views/footer.php');?>

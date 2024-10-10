@@ -2,11 +2,16 @@
 
 	<div class="grid-container">
 		<!-- Poner el codigo en HTML aqui -->
+         <br>
         <div class="grit-x text-center">
-        <h2>Lista de Horarios</h2>
-        <div class="cell small-12 medium-6 large-6 text-center">
-        <a href="<?php echo constant('URL') ?>cursos" class="button success rounded-border">Volver</a>
-    </div>  
+            <div class="grid-x">
+            <div class="cell small-12 medium-6 large-6 text-center">
+        <h2>Administracion Horarios</h2>
+        </div>
+        <div class="cell small-12 medium-6 large-4">
+            <a class="button success rounded-border" href="<?php echo constant('URL') ?>horarios/horario">Ingresar Horario</a>
+        </div>
+            </div>
         </div>
 <hr>
 <?php echo $this->data; ?>
@@ -20,7 +25,7 @@
 				<tr>
 					<th class="text-center">N°</th>
 					<th class="text-center">horario</th>
-					
+					<th class="text-center" colspan="1">Acciones</th>
 				</tr>
 			</thead>
 			

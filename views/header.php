@@ -47,6 +47,12 @@
                 </a>
               </li>
               <li>
+                <a href="<?php echo constant('URL') ?>horarios">
+                  <i class="fas fa-list"></i>
+                  <span class="nav-item">Horarios</span>
+                </a>
+              </li>
+              <li>
                 <a href="<?php echo constant('URL') ?>#">
                   <i class="fas fa-people-line"></i>
                   <span class="nav-item">Estudiantes</span>
@@ -56,12 +62,6 @@
                 <a href="<?php echo constant('URL') ?>maestros">
                   <i class="fas fa-users-cog"></i>
                   <span class="nav-item">Profesores</span>
-                </a>
-              </li>
-              <li>
-                <a href="<?php echo constant('URL') ?>#">
-                  <i class="fas fa-list"></i>
-                  <span class="nav-item">Horarios</span>
                 </a>
               </li>
               <li>
