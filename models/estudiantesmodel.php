@@ -35,11 +35,11 @@ class estudiantesModel extends Model {
     }
     
     // Guardar configuración de mensaje
-    //function GuardarMensaje($mensaje) {
-    //    $sql = "UPDATE configuracion_mensajes SET mensaje = '$mensaje' WHERE id = 1;";
-    //    $res = $this->conn->ConsultaSin($sql);
-    //    return $res;
-   // }
+    function GuardarMensaje($mensaje) {
+        $sql = "UPDATE configuracion_mensajes SET mensaje = '$mensaje' WHERE id = 1;";
+        $res = $this->conn->ConsultaSin($sql);
+        return $res;
+    }
 
     // Escribirse a curso
     //function EscribirseCurso($idAlumno, $idCurso) {

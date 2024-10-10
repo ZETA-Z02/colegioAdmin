@@ -8,6 +8,9 @@ class Estudiantes extends Controller {
     public function render() {
         $this->view->render('estudiantes/index');
     }
+    public function renderRegistrar(){
+        $this->view->render('estudiantes/registraralumno');
+    }
 
     // Registrar alumno
     function RegistrarEstudiantes() {
@@ -26,6 +29,9 @@ class Estudiantes extends Controller {
 
         $this->model->RegistrarEstudiantes($nombre, $apellidos, $edad, $email, $telefono, $direccion, $ciudad, $foto, $fechaNacimiento, $telefonoPadre, $nombrepadre, $emailpadre);
     }
+    function ResgitAlumno (){
+        $this->view->render('estudiantes/registraralumno');
+    }
 
     // Inscribir alumno
     function InscribirAlumno() {
@@ -39,6 +45,10 @@ class Estudiantes extends Controller {
         }
         $this->view->data = $msg;
         $this->view->render('estudiantes/inscribir');
+    }
+
+    function IAlumnos (){
+        $this->view->render('estudiantes/inscribiralumno');
     }
 
     // Asignar alumno a salón
@@ -55,6 +65,11 @@ class Estudiantes extends Controller {
         $this->view->render('estudiantes/asignarsalon');
     }
 
+    function Asalon() {
+        $this->view->render('estudiantes/asignarsalon');
+        
+    }
+
     // Ver información del alumno
     function InformacionAlumno() {
         $idAlumno = $_POST['idAlumno'];
@@ -68,31 +83,36 @@ class Estudiantes extends Controller {
         $this->view->render('estudiantes/informacion');
     }
 
+    function InfoAlumnos(){
+        $this->view->render('estudiantes/informacionalumno');
+    }
+
     // Configuración de mensajes
-   // function ConfiguracionMensaje() {
-    //    $mensaje = $_POST['mensaje'];
+    function ConfiguracionMensaje() {
+        $mensaje = $_POST['mensaje'];
         
-     //   if ($this->model->GuardarMensaje($mensaje)) {
-    //        $msg = "Configuración guardada";
-     //   } else {
-    //        $msg = "Error al guardar configuración";
-    //    }
-    //    $this->view->data = $msg;
-   //     $this->view->render('estudiantes/configuracion');
-   // }
+        if ($this->model->GuardarMensaje($mensaje)) {
+            $msg = "Configuración guardada";
+        } else {
+            $msg = "Error al guardar configuración";
+        }
+        $this->view->data = $msg;
+        $this->view->render('estudiantes/configuracion');
+    }
+
 
     // Escribirse a cursos
-   // function EscribirseCurso() {
-   //     $idAlumno = $_POST['idAlumno'];
-   //     $idCurso = $_POST['idCurso'];
-   //     
-  //      if ($this->model->EscribirseCurso($idAlumno, $idCurso)) {
-     //       $msg = "Inscripción al curso exitosa";
-   //     } else {
-    //        $msg = "Error al inscribirse al curso";
-   //     }
-   //     $this->view->data = $msg;
-    //    $this->view->render('estudiantes/escribirse');
-   // }
+    function EscribirseCurso() {
+        $idAlumno = $_POST['idAlumno'];
+        $idCurso = $_POST['idCurso'];
+        
+        if ($this->model->EscribirseCurso($idAlumno, $idCurso)) {
+            $msg = "Inscripción al curso exitosa";
+        } else {
+            $msg = "Error al inscribirse al curso";
+        }
+        $this->view->data = $msg;
+        $this->view->render('estudiantes/escribirse');
+    }
 }
 ?>
