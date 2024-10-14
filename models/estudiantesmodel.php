@@ -14,8 +14,8 @@ class estudiantesModel extends Model {
     }
 
 
-    function InscribirAlumno($idAlumno, $idCurso) {
-        $sql = "INSERT INTO inscripciones (idAlumno, idCurso) VALUES ('$idAlumno', '$idCurso');";
+    function InscribirAlumno($idAlumno, $idCurso,$idSalon) {
+        $sql = "INSERT INTO inscripciones (idAlumno, idCurso, idSalon) VALUES ('$idAlumno', '$idCurso','$idSalon');";
         $res = $this->conn->ConsultaSin($sql);
         return $res;
     }
@@ -28,8 +28,8 @@ class estudiantesModel extends Model {
     }
 
 
-    function ObtenerInformacionAlumno($idAlumno) {
-        $sql = "SELECT * FROM alumnos WHERE idAlumno = '$idAlumno';";
+    function ObtenerInformacionAlumno($idAlumno,$idCurso,$idSalon,$idmaestro) {
+        $sql = "SELECT * FROM alumnos WHERE idAlumno = '$idAlumno', '$idCurso','$idSalon','$idmaestro';";
         $data = $this->conn->ConsultaCon($sql);
         return $data;
     }
@@ -42,10 +42,10 @@ class estudiantesModel extends Model {
     }
 
     // Escribirse a curso
-    //function EscribirseCurso($idAlumno, $idCurso) {
-    //    $sql = "INSERT INTO cursos_inscripciones (idAlumno, idCurso) VALUES ('$idAlumno', '$idCurso');";
-    //    $res = $this->conn->ConsultaSin($sql);
-   //     return $res;
-    //} 
+    function EscribirseCurso($idAlumno, $idCurso) {
+        $sql = "INSERT INTO cursos_inscripciones (idAlumno, idCurso) VALUES ('$idAlumno', '$idCurso');";
+        $res = $this->conn->ConsultaSin($sql);
+        return $res;
+} 
 }
 ?>

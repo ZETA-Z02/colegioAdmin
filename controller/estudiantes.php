@@ -14,21 +14,26 @@ class Estudiantes extends Controller {
 
     // Registrar alumno
     function RegistrarEstudiantes() {
-        $nombre = $_POST['nombre'];
-        $apellidos = $_POST['apellidos'];
-        $edad = $_POST['edad'];
-        $email = $_POST['email'];
-        $telefono = $_POST['telefono'];
-        $direccion = $_POST['direccion'];
-        $ciudad = $_POST['ciudad'];
-        $foto = $_POST['foto'];
-        $fechaNacimiento = $_POST['fechaNacimiento'];
-        $telefonoPadre = $_POST['telefonopadre'];
-        $nombrepadre = $_POST['nombrepadre'];
-        $emailpadre = $_POST['emailpadre'];
+         $nombre = $_POST['nombre'];
+         $apellidos = $_POST['apellidos'];
+         $edad = $_POST['edad'];
+         $email = $_POST['email'];
+         $telefono = $_POST['telefono'];
+         $direccion = $_POST['direccion'];
+         $ciudad = $_POST['ciudad'];
+         $foto = $_POST['foto'];
+         $fechaNacimiento = $_POST['fechaNacimiento'];
+         $telefonoPadre = $_POST['telefonopadre'];
+         $nombrepadre = $_POST['nombrepadre'];
+         $emailpadre = $_POST['emailpadre'];
 
-        $this->model->RegistrarEstudiantes($nombre, $apellidos, $edad, $email, $telefono, $direccion, $ciudad, $foto, $fechaNacimiento, $telefonoPadre, $nombrepadre, $emailpadre);
+         if ($this->model->RegistrarEstudiantes($nombre, $apellidos, $edad, $email, $telefono, $direccion, $ciudad, $foto, $fechaNacimiento, $telefonoPadre, $nombrepadre, $emailpadre)) {
+            $msg = "Inscripción exitosa";
+        } else {
+            $msg = "Error al inscribir";
+        }
     }
+
     function ResgitAlumno (){
         $this->view->render('estudiantes/registraralumno');
     }
@@ -37,8 +42,9 @@ class Estudiantes extends Controller {
     function InscribirAlumno() {
         $idAlumno = $_POST['idAlumno'];
         $idCurso = $_POST['idCurso'];
+        $idSalon = $_POST['idSalon'];
         
-        if ($this->model->InscribirAlumno($idAlumno, $idCurso)) {
+        if ($this->model->InscribirAlumno($idAlumno, $idCurso,$idSalon)) {
             $msg = "Inscripción exitosa";
         } else {
             $msg = "Error al inscribir";
@@ -73,8 +79,11 @@ class Estudiantes extends Controller {
     // Ver información del alumno
     function InformacionAlumno() {
         $idAlumno = $_POST['idAlumno'];
-        $res = $this->model->ObtenerInformacionAlumno($idAlumno);
-        
+        $idCurso = $_POST['idCurso'];
+        $idSalon = $_POST['idSalon'];
+        $idmaestro = $_POST['idmaestro'];
+
+        $res = $this->model->ObtenerInformacionAlumno($idAlumno,$idCurso,$idSalon,$idmaestro);
         if ($res) {
             $this->view->data = $res;
         } else {
