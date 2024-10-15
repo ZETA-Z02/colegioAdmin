@@ -7,8 +7,8 @@
     <form action="<?php echo constant('URL') ?>estudiantes/AsignarSalon" method="POST">
         <div class="grid-x grid-padding-x">
         <div class="cell small-12 medium-4">
-                <label for="idAlumno">ID del Alumno</label>
-                <input type="text" name="idAlumno" id="idAlumno" placeholder="Ingrese el ID del alumno" required>
+                <label for="codigo">codigo del Estudiante</label>
+                <input type="text" name="codigo" id="codigo" placeholder="ingrese  su codigo" required>
             </div>
         </div>
         <div class="grid-x grid-padding-x">
@@ -16,6 +16,8 @@
                 <label for="idSalon">Seleccionar Salón
                     <select name="idSalon" id="idSalon" required>
                         <option value="" disabled selected>Seleccione un salón...</option>
+
+
                     </select>
                 </label>
             </div>
@@ -23,9 +25,16 @@
                 <label for="turno">Turno
                     <select name="turno" id="turno" required>
                         <option value="" disabled selected>Seleccione un turno...</option>
-                        <option value="mañana">Mañana</option>
-                        <option value="tarde">Tarde</option>
-                        <option value="noche">noche</option>
+                        <?php 
+            $turno = $this->$data;
+            while($row1 = $turno->fetch_array(MYSQLI_ASSOC))
+            {
+            ?>
+              <option value="<?php echo $row1['idturno'];?>"><?php echo $row1['turno'];?></option>
+
+            <?php   
+              }
+              ?>
                     </select>
                 </label>
             </div>

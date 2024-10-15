@@ -14,16 +14,30 @@ class estudiantesModel extends Model {
     }
 
 
-    function InscribirAlumno($idAlumno, $idCurso,$idSalon) {
-        $sql = "INSERT INTO inscripciones (idAlumno, idCurso, idSalon) VALUES ('$idAlumno', '$idCurso','$idSalon');";
+    function InscribirAlumno($codigo,$idAlumno, $idCurso,$idSalon) {
+        $sql = "INSERT INTO inscripciones (codigo, idAlumno, idCurso, idSalon) VALUES ('$codigo','$idAlumno', '$idCurso','$idSalon');";
         $res = $this->conn->ConsultaSin($sql);
         return $res;
     }
+    
+    function listcursos(){
+        $sql = "SELECT idcurso, curso FROM colegio_cursos;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+
 
  
-    function AsignarSalon($idAlumno, $idSalon) {
-        $sql = "INSERT INTO asignaciones_salon (idAlumno, idSalon) VALUES ('$idAlumno', '$idSalon');";
+    function AsignarSalon($codigo,$idAlumno, $idSalon, $idturno) {
+        $sql = "INSERT INTO asignaciones_salon (idAlumno, codigo, idSalon,idturno) VALUES ('$idAlumno','$codigo', '$idSalon, $idturno');";
         $res = $this->conn->ConsultaSin($sql);
+        return $res;
+    }
+    
+    function listTurno(){
+        $sql = "SELECT idturno, turno FROM colegio_turno;";
+        $res = $this->conn->ConsultaCon($sql);
         return $res;
     }
 

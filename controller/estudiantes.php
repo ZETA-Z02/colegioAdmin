@@ -12,6 +12,7 @@ class Estudiantes extends Controller {
         $this->view->render('estudiantes/registraralumno');
     }
 
+
     // Registrar alumno
     function RegistrarEstudiantes() {
          $nombre = $_POST['nombre'];
@@ -43,8 +44,9 @@ class Estudiantes extends Controller {
         $idAlumno = $_POST['idAlumno'];
         $idCurso = $_POST['idCurso'];
         $idSalon = $_POST['idSalon'];
+        $codigo = $_POST['codigo'];
         
-        if ($this->model->InscribirAlumno($idAlumno, $idCurso,$idSalon)) {
+        if ($this->model->InscribirAlumno($idAlumno, $idCurso,$idSalon,$codigo)) {
             $msg = "Inscripción exitosa";
         } else {
             $msg = "Error al inscribir";
@@ -54,15 +56,20 @@ class Estudiantes extends Controller {
     }
 
     function IAlumnos (){
+        $res = $this->model->listcursos();
+		$this->view->data = $res;
         $this->view->render('estudiantes/inscribiralumno');
     }
 
+
     // Asignar alumno a salón
     function AsignarSalon() {
+        $idturno = $_POST['idturno'];
+        $codigo = $_POST['codigo'];
         $idAlumno = $_POST['idAlumno'];
         $idSalon = $_POST['idSalon'];
         
-        if ($this->model->AsignarSalon($idAlumno, $idSalon)) {
+        if ($this->model->AsignarSalon($idAlumno, $idSalon,$codigo,$idturno)) {
             $msg = "Asignación exitosa";
         } else {
             $msg = "Error al asignar";
@@ -71,10 +78,19 @@ class Estudiantes extends Controller {
         $this->view->render('estudiantes/asignarsalon');
     }
 
+    // function listTurno (){
+    //     $res = $this->model->listTurno();
+	// 	$this->view->data = $res;
+    //     $this->view->render('estudiantes/asignarsalon');
+    // }
+
     function Asalon() {
+        $res = $this->model->listTurno();
+		$this->view->data = $res;
         $this->view->render('estudiantes/asignarsalon');
         
     }
+
 
     // Ver información del alumno
     function InformacionAlumno() {

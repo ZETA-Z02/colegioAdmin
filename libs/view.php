@@ -8,6 +8,9 @@ class View
   public $data3;
   public $data4;
   public $data5;
+  public $T1;
+  public $T2;
+
 
   function __construct()
   {
