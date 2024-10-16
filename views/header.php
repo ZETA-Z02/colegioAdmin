@@ -53,7 +53,7 @@
                 </a>
               </li>
               <li>
-                <a href="<?php echo constant('URL') ?>#">
+                <a href="<?php echo constant('URL') ?>estudiantes">
                   <i class="fas fa-people-line"></i>
                   <span class="nav-item">Estudiantes</span>
                 </a>
