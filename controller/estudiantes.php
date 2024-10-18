@@ -15,24 +15,28 @@ class Estudiantes extends Controller {
 
     // Registrar alumno
     function RegistrarEstudiantes() {
-         $nombre = $_POST['nombre'];
-         $apellidos = $_POST['apellidos'];
-         $edad = $_POST['edad'];
-         $email = $_POST['email'];
-         $telefono = $_POST['telefono'];
-         $direccion = $_POST['direccion'];
-         $ciudad = $_POST['ciudad'];
-         $foto = $_POST['foto'];
-         $fechaNacimiento = $_POST['fechaNacimiento'];
-         $telefonoPadre = $_POST['telefonopadre'];
-         $nombrepadre = $_POST['nombrepadre'];
-         $emailpadre = $_POST['emailpadre'];
+        $idalumno = $_GET['idalumno'];
+        $nombre = $_GET['nombre'];
+        $apellidos = $_GET['apellidos'];
+        $codigo = $_GET['codigo'];
+        $fecNacimiento = $_GET['fecNacimiento'];
+        $foto = $_FILES['foto'];
+        $ciudad = $_GET['ciudad'];
+        $telefono = $_GET['telefono'];
+        $email = $_GET['email'];
+        $nombrepadre = $_GET['nombrepadre'];
+        $telefonopadre = $_GET['telefonopadre'];
+        $emailpadre = $_GET['emailpadre'];
 
-         if ($this->model->RegistrarEstudiantes($nombre, $apellidos, $edad, $email, $telefono, $direccion, $ciudad, $foto, $fechaNacimiento, $telefonoPadre, $nombrepadre, $emailpadre)) {
-            $msg = "Inscripción exitosa";
-        } else {
+        $res = $this->model->RegistrarEstudiantes($idalumno, $nombre, $apellidos, $codigo, $fecNacimiento, $foto, $ciudad, $telefono, $email, $nombrepadre, $telefonopadre,$emailpadre);
+        if(!empty($res))
+         {
+           $msg = "Inscripción exitosa";
+         } else {
             $msg = "Error al inscribir";
         }
+        $this->view->data = $msg;
+        $this->view->render('estudiantes/registraralumno');
     }
 
     function ResgitAlumno (){
@@ -41,12 +45,19 @@ class Estudiantes extends Controller {
 
     // Inscribir alumno
     function InscribirAlumno() {
-        $idAlumno = $_POST['idAlumno'];
-        $idCurso = $_POST['idCurso'];
-        $idSalon = $_POST['idSalon'];
-        $codigo = $_POST['codigo'];
+        $idIalumnos =$_GET['idIalumnos'];
+        $idcurso =$_GET['idcurso'];
+        $idalumno =$_GET['idalumno'];
+        $idturno =$_GET['idturno'];
+        $idsalon =$_GET['idsalon'];
+        $idhorario =$_GET['idhorario'];
+        $feccreate =$_GET['feccrerate'];
+        $fecmodific=$_GET['fecmodific'];
         
-        if ($this->model->InscribirAlumno($idAlumno, $idCurso,$idSalon,$codigo)) {
+        
+        $res = $this->model->InscribirAlumno($idIalumnos, $idcurso, $idalumno, $idturno, $idsalon, $idhorario, $feccreate, $fecmodific);
+        if(!empty($res))
+        {
             $msg = "Inscripción exitosa";
         } else {
             $msg = "Error al inscribir";
@@ -64,29 +75,36 @@ class Estudiantes extends Controller {
 
     // Asignar alumno a salón
     function AsignarSalon() {
-        $idturno = $_POST['idturno'];
-        $codigo = $_POST['codigo'];
-        $idAlumno = $_POST['idAlumno'];
-        $idSalon = $_POST['idSalon'];
+        $idgrados=$_GET['idgrados'];
+        $idAlumno=$_GET['idAlumno'];
+        $idTurno=$_GET['idTurno'];
+        $idseccion=$_GET['idseccion'];
+        $idsalon=$_GET['idsalon'];
+        $idmaestro=$_GET['idmaestro'];
+        $idpersonal=$_GET['idpersonal'];
+        $feccrerate=$_GET['feccrerate'];
+        $fecmodific=$_GET['fecmodific'];
         
-        if ($this->model->AsignarSalon($idAlumno, $idSalon,$codigo,$idturno)) {
+        $respuesta = $this->model->AsignarSalon($idgrados,$idAlumno,$idTurno,$idseccion,$idsalon,$idmaestro,$idpersonal,$feccrerate,$fecmodific) ;
+        if(!empty($respuesta))
+        {
             $msg = "Asignación exitosa";
         } else {
             $msg = "Error al asignar";
         }
-        $this->view->data = $msg;
+        $this->view->mensaje = $msg;
         $this->view->render('estudiantes/asignarsalon');
     }
 
-    // function listTurno (){
-    //     $res = $this->model->listTurno();
-	// 	$this->view->data = $res;
-    //     $this->view->render('estudiantes/asignarsalon');
-    // }
+    function listSalon (){
+        $res = $this->model->listSalon();
+	 	$this->view->data = $res;
+         $this->view->render('estudiantes/asignarsalon');
+    }
 
     function Asalon() {
         $res = $this->model->listTurno();
-		$this->view->data = $res;
+		$this->view->data2 = $res;
         $this->view->render('estudiantes/asignarsalon');
         
     }

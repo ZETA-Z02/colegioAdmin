@@ -30,7 +30,7 @@ class Controller
   public function File($file, $nombre, $identificador)
   {
       $temporal = $file['tmp_name'];
-      $rutaCarpeta = "dumps/excel/Cot.:" . $nombre . $identificador;
+      $rutaCarpeta = "dumps/" . $nombre . $identificador;
       $fileExistente = file_exists($rutaCarpeta);
       //TAMAÑO Y TIPOS DE ARCHIVOS
       $tamanoMaximo = 4 * 1024 * 1024;
@@ -49,8 +49,8 @@ class Controller
           }
       } else {
           if (!empty($file) && $file['error'] == 0 && $resultadoExtension && $tamanoMaximo >= $file['size']) {
-              $result = mkdir('Cot.:' . $nombre . $identificador, 0777);
-              $resultRename = rename('Cot.:' . $nombre . $identificador, "dumps/excel/Cot.:". $nombre.$identificador);
+              $result = mkdir('' . $nombre . $identificador, 0777);
+              $resultRename = rename('' . $nombre . $identificador, "dumps/". $nombre.$identificador);
               $rutaFile = $rutaCarpeta . "/" . $file['name'];
               $fileSubido = move_uploaded_file($temporal, $rutaFile);
               if ($result && $resultRename && $fileSubido) {
@@ -69,7 +69,7 @@ class Controller
   protected function Foto($file, $nombre, $identificador)
   {
       $temporal = $file['tmp_name'];
-      $rutaCarpeta = "dumps/img/" . $nombre . $identificador;
+      $rutaCarpeta = "dumps/" . $nombre . $identificador;
       $fileExistente = file_exists($rutaCarpeta);
       //TAMAÑO Y TIPOS DE ARCHIVOS
       $tamanoMaximo = 4 * 1024 * 1024;
