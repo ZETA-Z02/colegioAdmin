@@ -75,20 +75,21 @@ class Cursos extends Controller
 
 	function createhorario()
 	{
-		$horario = $_POST['horario'];
-		$status = $_POST['status'];
-		if($this->model->insertHorario( $horario, $status)){
-			// echo "REGISTRO EXITOSO";
-			$msg= "EXITOSO";
-			$this->view->data = $msg;
-			$this->view->Render('cursos/listahorario');
+		echo $horario = $_POST['horario'];
+		echo $status = $_POST['status'];
+		
+		// if($this->model->insertHorario( $horario, $status)){
+		// 	// echo "REGISTRO EXITOSO";
+		// 	$msg= "EXITOSO";
+		// 	$this->view->data = $msg;
+		// 	$this->view->Render('cursos/listahorario');
 
-		}else{
-			// echo "ERROR AL INSERTAR";
-			$msg= "ERROR";
-			$this->view->data = $msg;
-			$this->view->Render('cursos/listahorario');
-		}	
+		// }else{
+		// 	// echo "ERROR AL INSERTAR";
+		// 	$msg= "ERROR";
+		// 	$this->view->data = $msg;
+		// 	$this->view->Render('cursos/listahorario');
+		// }	
 	}
 
 	public function deleteH(){

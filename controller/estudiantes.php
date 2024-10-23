@@ -75,15 +75,15 @@ class Estudiantes extends Controller {
 
     // Asignar alumno a salón
     function AsignarSalon() {
-        $idgrados=$_GET['idgrados'];
-        $idAlumno=$_GET['idAlumno'];
-        $idTurno=$_GET['idTurno'];
-        $idseccion=$_GET['idseccion'];
-        $idsalon=$_GET['idsalon'];
-        $idmaestro=$_GET['idmaestro'];
-        $idpersonal=$_GET['idpersonal'];
-        $feccrerate=$_GET['feccrerate'];
-        $fecmodific=$_GET['fecmodific'];
+       $idgrados=$_GET['idgrados'];
+       $idAlumno=$_GET['idAlumno'];
+       $idTurno=$_GET['idTurno'];
+       $idseccion=$_GET['idseccion'];
+       $idsalon=$_GET['idsalon'];
+       $idmaestro=$_GET['idmaestro'];
+       $idpersonal=$_GET['idpersonal'];
+       $feccrerate=$_GET['feccrerate'];
+       $fecmodific=$_GET['fecmodific'];
         
         $respuesta = $this->model->AsignarSalon($idgrados,$idAlumno,$idTurno,$idseccion,$idsalon,$idmaestro,$idpersonal,$feccrerate,$fecmodific) ;
         if(!empty($respuesta))
@@ -93,22 +93,32 @@ class Estudiantes extends Controller {
             $msg = "Error al asignar";
         }
         $this->view->mensaje = $msg;
-        $this->view->render('estudiantes/asignarsalon');
+        $this->view->render('estudiantes/index');
     }
 
-    function listSalon (){
-        $res = $this->model->listSalon();
-	 	$this->view->data = $res;
-         $this->view->render('estudiantes/asignarsalon');
-    }
-
-    function Asalon() {
+    function Asalon()
+	{
         $res = $this->model->listTurno();
-		$this->view->data2 = $res;
+		$this->view->T1= $res;
+        
+        $res = $this->model->listgrado();
+        $this->view->T2= $res;
+
+        $res = $this->model->listseccion();
+        $this->view->T3 = $res;
+
+        $res = $this->model->listsalon();
+        $this->view->T4 = $res;
+
+        $res = $this->model->listmaestro();
+        $this->view->T5 = $res;
+
+        $res = $this->model->listadministrativos();
+        $this->view->T6 = $res;
+        
         $this->view->render('estudiantes/asignarsalon');
         
     }
-
 
     // Ver información del alumno
     function InformacionAlumno() {

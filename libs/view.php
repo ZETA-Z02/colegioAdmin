@@ -10,6 +10,12 @@ class View
   public $data5;
   public $T1;
   public $T2;
+  public $T3;
+  public $T4;
+  public $T5;
+  public $T6;
+  public $T7;
+  public $T8;
 
 
   function __construct()

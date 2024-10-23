@@ -1,23 +1,35 @@
 <?php require ('views/header.php'); ?>
 
 <div class="grid-container">
-    <div class="grid-x text-center">
+    <div class="grid-x grid-padding-x text-center callout ">
         <h2>Asignar Estudiante a Salón</h2>
-        <form action="<?php echo constant('URL') ?>estudiantes/AsignarSalon" method="GET">
-            <div class="grid-x grid-padding-x">
+    </div>
+    <?php 
+    echo $this->mensaje;
+    ?>
+    <hr>
+        <form action="<?php echo constant('URL') ?>estudiantes/AsignarSalon" method="GET" enctype="multipart/form-data"  class="x callout">
+
+            <div class="grid-x grid-padding-x callout">
                 <div class="large-6 cell">
                     <label for="idgrados">Grado</label>
                     <select name="idgrados" id="idgrados" required>
                         <option value="" selected disabled>Seleccione un grado...</option>
-                        <!-- Aquí irán los grados obtenidos de la base de datos -->
-                        <option value="1">Primero</option>
-                        <option value="2">Segundo</option>
-                        <option value="3">Tercero</option>
+                        <?php 
+                        $res = $this->T2;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idgrado'];?>"><?php echo $row['grado'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="large-6 cell">
                     <label for="idAlumno">CODIGO DEL  ESTUDIANTE</label>
                     <input type="text" name="idAlumno" id="idAlumno" placeholder="Ingrese su codigo aqui" required>
+                    <!-- aqui se va a realizar un apartado de busqueda de alumnos -->
                 </div>
             </div>
             <div class="grid-x grid-padding-x">
@@ -25,52 +37,77 @@
                     <label for="idTurno">Turno</label>
                     <select name="idTurno" id="idTurno" required>
                         <option value="" selected disabled>Seleccione un turno...</option>
-                        <!-- Aquí irán los turnos obtenidos de la base de datos -->
-                        <option value="1">Mañana</option>
-                        <option value="2">Tarde</option>
-                        <option value="3">Noche</option>
+                        <?php 
+                        $res = $this->T1;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idturno'];?>"><?php echo $row['turno'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="large-4 cell">
                     <label for="idseccion">Sección</label>
                     <select name="idseccion" id="idseccion" required>
                         <option value="" selected disabled>Seleccione una sección...</option>
-                        <!-- Aquí irán las secciones obtenidas de la base de datos -->
-                        <option value="A">A</option>
-                        <option value="B">B</option>
-                        <option value="C">C</option>
+                        <?php 
+                        $res = $this->T3;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idseccion'];?>"><?php echo $row['seccion'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="large-4 cell">
                     <label for="idsalon">Salón</label>
                     <select name="idsalon" id="idsalon" required>
                         <option value="" selected disabled>Seleccione un salón...</option>
-                        <!-- Aquí irán los salones obtenidos de la base de datos -->
-                        <option value="101">101</option>
-                        <option value="102">102</option>
-                        <option value="103">103</option>
+                         <?php 
+                        $res = $this->T4;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idsalon'];?>"><?php echo $row['salon'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
-            </div>
+            </div> 
             <div class="grid-x grid-padding-x">
                 <div class="large-6 cell">
                     <label for="idmaestro">ID del Maestro</label>
                     <select name="idmaestro" id="idmaestro" required>
                         <option value="" selected disabled>Seleccione un maestro...</option>
-                        <!-- Aquí irán los maestros obtenidos de la base de datos -->
-                        <option value="1">Maestro 1</option>
-                        <option value="2">Maestro 2</option>
-                        <option value="3">Maestro 3</option>
+                        <?php 
+                        $res = $this->T5;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idmaestro'];?>"><?php echo $row['nombre']. " " . $row['apellidos'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="large-6 cell">
                     <label for="idpersonal">ID del Personal Administrativo</label>
                     <select name="idpersonal" id="idpersonal" required>
                         <option value="" selected disabled>Seleccione personal administrativo...</option>
-                        <!-- Aquí irán los personales administrativos obtenidos de la base de datos -->
-                        <option value="1">Personal 1</option>
-                        <option value="2">Personal 2</option>
-                        <option value="3">Personal 3</option>
+                        <?php 
+                        $res = $this->T6;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idadministrativo'];?>"><?php echo $row['nombre']. " " . $row['apellidos'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -90,7 +127,6 @@
                 </div>
             </div>
         </form>
-    </div>
 </div>
 
 <?php require ('views/footer.php'); ?>

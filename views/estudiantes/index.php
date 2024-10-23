@@ -18,6 +18,9 @@
 
         <div class="cell small-12 medium-6 large-4">
             <h5>Asignar al Salón</h5>
+            <?php 
+            echo $this->mensaje;
+            ?>
             <a class="button success rounded-border" href="<?php echo constant('URL') ?>estudiantes/Asalon">Asignar salon</a>
         </div>
 

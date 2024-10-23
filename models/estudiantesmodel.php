@@ -35,14 +35,38 @@ class EstudiantesModel extends Model {
         return $res;
     }
 
+    function listgrado(){
+        $sql = "SELECT idgrado, grado FROM colegio.colegio_grado;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+    
     function listTurno(){
-        $sql = "SELECT idturno, turno FROM colegio_turno;";
+        $sql = "SELECT idturno, turno FROM colegio.colegio_turno;";
         $res = $this->conn->ConsultaCon($sql);
         return $res;
     }
 
-    function listSalon(){
-        $sql = "SELECT idseccion, seccion FROM colegio_seccion;";
+    function listseccion(){
+        $sql = "SELECT idseccion, seccion FROM colegio.colegio_seccion;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function listsalon(){
+        $sql = "SELECT * FROM colegio.colegio_salon;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function listmaestro(){
+        $sql = "SELECT idmaestro, nombre ,apellidos FROM colegio.maestros;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function listadministrativos (){
+        $sql = "SELECT idadministrativo, nombre , apellidos FROM administrativo";
         $res = $this->conn->ConsultaCon($sql);
         return $res;
     }
