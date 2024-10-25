@@ -1,24 +1,28 @@
-<?php require ('views/maestros/index.php');?>
+<?php require('maestros/index.php'); ?>
 
-	<div class="grid-container">
-		<!-- Poner el codigo en HTML aqui -->
-        <div class="grid-padding-x text-center">
-    <div class="cell small-12 medium-6 large-4">
-        <h5>Ingresar Maestros</h5>
-        <form action="<?php echo constant('URL') ?>maestros/insertarmaestro" method="post">
-            <label for="nombre">Nombre:</label>
-            <input type="text" id="nombre" name="nombre" required>
-
-            <label for="apellidos">Apellidos:</label>
-            <input type="text" id="apellidos" name="apellidos" required>
-
-            <label for="especialidad">Especialidad:</label>
-            <input type="text" id="especialidad" name="especialidad" required>
-
-            <button class="button success rounded-border" type="submit">Guardar</button>
-        </form>
+<div class="grid-container">
+    <div class="grid-x text-center">
+        <div class="cell">
+            <h2>Ingresar Maestro</h2>
+            <form action="<?php echo constant('URL'); ?>maestros/insertarMaestro" method="POST" enctype="multipart/form-data">
+                <label>ID: <input type="number" name="idmaestro" required></label>
+                <label>Nombre: <input type="text" name="nombre" required></label>
+                <label>Apellidos: <input type="text" name="apellidos" required></label>
+                <label>Fecha de Nacimiento: <input type="date" name="fecNacimiento" required></label>
+                <label>Foto: <input type="file" name="foto"></label>
+                <label>Sexo:
+                    <select name="sexo" required>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                </label>
+                <label>Especialidad: <input type="text" name="especialidad" required></label>
+                <label>Ciudad: <input type="text" name="ciudad" required></label>
+                <label>Teléfono: <input type="tel" name="telefono" required></label>
+                <label>Email: <input type="email" name="email" required></label>
+                <label>ID Grado: <input type="number" name="idgrado" required></label>
+                <button type="submit" class="button success">Guardar</button>
+            </form>
+        </div>
     </div>
 </div>
-	</div>
-
-<?php require ('views/footer.php');?>

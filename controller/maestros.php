@@ -1,49 +1,74 @@
 <?php
-Class Maestros extends Controller{
-    function __construct(){
+class Maestros extends Controller {
+    function __construct() {
         parent::__construct();
     }
 
-    public function render(){
-        $datos = $this->model->ListaMaestros();
-        $this->view->data = $datos;
+    public function render() {
         $this->view->Render('maestros/index');
     }
 
-    public function insertarmaestro(){
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $nombre = $_POST['nombre'];
-            $apellidos = $_POST['apellidos'];
-            $especialidad = $_POST['especialidad'];
+    public function maestro() {
+        $this->view->Render('maestros/maestros');
+    }
 
-            $this->model->insertarMaestro($nombre, $apellidos, $especialidad);
-            header('Location: ' . constant('URL') . 'maestros');
+    public function ListaMaestros() {
+        $datos = $this->model->listaMaestros();
+        $json = array();
+
+        while ($row = mysqli_fetch_assoc($datos)) {
+            $json[] = array(
+                "idmaestro" => $row['idmaestro'],
+                "nombre" => $row['nombre'],
+                "apellidos" => $row['apellidos'],
+                "fecNacimiento" => $row['fecNacimiento'],
+                "sexo" => $row['sexo'],
+                "especialidad" => $row['especialidad'],
+                "ciudad" => $row['ciudad'],
+                "telefono" => $row['telefono'],
+                "email" => $row['email'],
+                "idgrado" => $row['idgrado']
+            );
+        }
+        echo json_encode($json);
+    }
+
+    public function InsertarMaestro() {
+        $idmaestro = $_POST['idmaestro'];
+        $nombre = $_POST['nombre'];
+        $apellidos = $_POST['apellidos'];
+        $fecNacimiento = $_POST['fecNacimiento'];
+        $foto = $_POST['foto'];
+        $sexo = $_POST['sexo'];
+        $especialidad = $_POST['especialidad'];
+        $ciudad = $_POST['ciudad'];
+        $telefono = $_POST['telefono'];
+        $email = $_POST['email'];
+        $idgrado = $_POST['idgrado'];
+
+        if ($this->model->insertarMaestro($idmaestro, $nombre, $apellidos, $fecNacimiento, $foto, $sexo, $especialidad, $ciudad, $telefono, $email, $idgrado)) {
+            $msg = "EXITOSO";
+            $this->view->datos = $msg;
+            $this->view->Render('maestros/index');
         } else {
-            $this->view->Render('maestros/insertarmaestro');
+            $msg = "ERROR";
+            $this->view->datos = $msg;
+            $this->view->Render('maestros/insertarMaestro');
         }
     }
 
-    public function eliminarmaestro(){
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $idmaestro = $_POST['idmaestro'];
+    public function Eliminarmaestro() {
+        $idmaestro = $_POST['idmaestro'];
 
-            $this->model->eliminarMaestro($idmaestro);
-            header('Location: ' . constant('URL') . 'maestros');
+        if ($this->model->eliminarMaestro($idmaestro)) {
+            echo "EXITO AL ELIMINAR";
         } else {
-            $this->view->Render('maestros/eliminarmaestro');
+            echo "ERROR AL ELIMINAR";
         }
     }
 
-    public function listamaestro(){
-        if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-            $filtro = $_GET['filtro'];
 
-            $datos = $this->model->ListaMaestros($filtro);
-            $this->view->data = $datos;
-            $this->view->Render('maestros/listamaestro');
-        } else {
-            $this->view->Render('maestros/listamaestro');
-        }
-    }
+    
+
 }
 ?>

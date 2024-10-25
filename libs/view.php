@@ -4,6 +4,8 @@ class View
 {
   public $mensaje;
   public $data;
+  public $datos;
+  public $datosd;
   public $data2;
   public $data3;
   public $data4;

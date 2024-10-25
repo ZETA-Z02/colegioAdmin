@@ -4,9 +4,9 @@ define('URL', 'http://localhost/colegioAdmin/');
 
 define('COMPANY', 'Katari A&C');
 define('HOST', 'localhost');
-define('USER', 'jhojan');
+define('USER', 'root');
 define('DB', 'colegio');
-define('PASSWORD', 'jhojan123');
+define('PASSWORD', '');
 define('CHATSET', 'utf8mb4');
 
 date_default_timezone_set('America/Lima');
