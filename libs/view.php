@@ -3,6 +3,10 @@
 class View
 {
   public $mensaje;
+  public $mensaje1;
+  public $mensaje2;
+  public $mensaje3;
+  public $mensaje4;
   public $data;
   public $data2;
   public $data3;

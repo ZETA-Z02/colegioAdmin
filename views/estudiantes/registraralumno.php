@@ -3,7 +3,7 @@
 <div class="grid-container">
     <div class="grid-x text-center">
         <h2>Registrar Estudiante</h2>
-        <form action="<?php echo constant('URL') ?>estudiantes/RegistrarEstudiantes" method="POST" enctype="multipart/form-data">
+        <form action="<?php echo constant('URL') ?>estudiantes/RegistrarEstudiantes" method="GET" enctype="multipart/form-data">
             <div class="grid-x grid-padding-x">
                 <div class="large-6 cell">
                     <label for="nombre">Nombre

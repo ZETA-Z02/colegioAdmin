@@ -6,16 +6,17 @@ class EstudiantesModel extends Model {
     }
 
     //REGISTRAR ALUMNO
-    function RegistrarEstudiantes($idalumno, $nombre, $apellidos, $codigo, $fecNacimiento, $foto, $ciudad, $telefono, $email, $nombrepadre, $telefonopadre,$emailpadre) {
-        $sql = "INSERT INTO 'colegio'.'alumnos' 
-                VALUES ('$idalumno', '$nombre', '$apellidos', '$codigo', '$fecNacimiento', '$foto', '$ciudad', '$telefono', '$email', '$nombrepadre', '$telefonopadre','$emailpadre');";
+    function RegistrarEstudiantes( $nombre, $apellidos, $codigo, $fecNacimiento, $foto, $ciudad, $telefono, $email, $nombrepadre, $telefonopadre,$emailpadre) {
+        $sql = "INSERT INTO `colegio`.`alumnos` (`nombre`, `apellidos`, `codigo`, `fecNacimiento`, `foto`, `ciudad`, `telefono`, `email`, `nombrepadre`, `telefonopadre`, `emailpadre`) 
+                VALUES ('$nombre', '$apellidos', '$codigo', '$fecNacimiento', ' $foto', '$ciudad', '$telefono', '$email', '$nombrepadre', '$telefonopadre', '$emailpadre');";
         $res = $this->conn->ConsultaSin($sql);
         return $res;
     }
 
     //INSCRIBIR ALUMNO
-    function InscribirAlumno($idIalumnos, $idcurso, $idalumno, $idturno, $idsalon, $idhorario, $feccreate, $fecmodific) {
-        $sql = "INSERT INTO 'colegio'.'alumnos_inscripcion' VALUES ('$idIalumnos', '$idcurso', '$idalumno', '$idturno', '$idsalon', '$idhorario', '$feccreate', '$fecmodific');";
+    function InscribirAlumno($idcurso,$idalumno,$idmaestro,$idturno,$idsalon,$idhorario,$idpersonal,$feccreate,$fecmodific) {
+        $sql = "INSERT INTO colegio . alumnos_inscripcion 
+                    VALUES (null,'$idcurso','$idalumno','$idmaestro','$idturno','$idsalon','$idhorario','$idpersonal','$feccreate','$fecmodific');";
         $res = $this->conn->ConsultaSin($sql);
         return $res;
     }
@@ -26,6 +27,35 @@ class EstudiantesModel extends Model {
         return $res; 
     }
 
+    function listTurno1(){
+        $sql = "SELECT idturno, turno FROM colegio.colegio_turno;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function listsalon1(){
+        $sql = "SELECT * FROM colegio.colegio_salon;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function listhorarios (){
+        $sql = "SELECT idhorario, horario FROM colegio.colegio_horario;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function listpersonaladm (){
+        $sql = "SELECT idadministrativo, nombre , apellidos FROM administrativo";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
+
+    function listmaestro1(){
+        $sql = "SELECT idmaestro, nombre ,apellidos FROM colegio.maestros;";
+        $res = $this->conn->ConsultaCon($sql);
+        return $res;
+    }
 
 
     //ASIGNAR SALON A ALUMNO

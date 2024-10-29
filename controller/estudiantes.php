@@ -15,7 +15,6 @@ class Estudiantes extends Controller {
 
     // Registrar alumno
     function RegistrarEstudiantes() {
-        $idalumno = $_GET['idalumno'];
         $nombre = $_GET['nombre'];
         $apellidos = $_GET['apellidos'];
         $codigo = $_GET['codigo'];
@@ -28,15 +27,25 @@ class Estudiantes extends Controller {
         $telefonopadre = $_GET['telefonopadre'];
         $emailpadre = $_GET['emailpadre'];
 
-        $res = $this->model->RegistrarEstudiantes($idalumno, $nombre, $apellidos, $codigo, $fecNacimiento, $foto, $ciudad, $telefono, $email, $nombrepadre, $telefonopadre,$emailpadre);
-        if(!empty($res))
-         {
-           $msg = "Inscripción exitosa";
-         } else {
-            $msg = "Error al inscribir";
-        }
-        $this->view->data = $msg;
-        $this->view->render('estudiantes/registraralumno');
+        // $res = $this->model->RegistrarEstudiantes($idalumno, $nombre, $apellidos, $codigo, $fecNacimiento, $foto, $ciudad, $telefono, $email, $nombrepadre, $telefonopadre,$emailpadre);
+        // if(!empty($res))
+        //  {
+        //    $msg = "Inscripción exitosa";
+        //  } else {
+        //     $msg = "Error al inscribir";
+        // }
+        // $this->view->data = $msg;
+        // $this->view->render('estudiantes/registraralumno');
+		//$res = $this->Foto($foto,$nombre,$codigo);
+		// if($res==false){
+		// 	$foto = "sin foto";
+		// }
+        $foto = "sin foto";
+		if($this->model->RegistrarEstudiantes( $nombre, $apellidos, $codigo, $fecNacimiento,$foto, $ciudad, $telefono, $email, $nombrepadre, $telefonopadre,$emailpadre)){
+			echo $this->model->conn->conn->insert_id;
+		}else{
+			echo "ERROR AL INSERTAR";
+		}
     }
 
     function ResgitAlumno (){
@@ -45,8 +54,9 @@ class Estudiantes extends Controller {
 
     // Inscribir alumno
     function InscribirAlumno() {
-        $idIalumnos =$_GET['idIalumnos'];
         $idcurso =$_GET['idcurso'];
+        $idpersonal=$_GET['idpersonal'];
+        $idmaestro = $_GET['idmaestro'];
         $idalumno =$_GET['idalumno'];
         $idturno =$_GET['idturno'];
         $idsalon =$_GET['idsalon'];
@@ -55,24 +65,41 @@ class Estudiantes extends Controller {
         $fecmodific=$_GET['fecmodific'];
         
         
-        $res = $this->model->InscribirAlumno($idIalumnos, $idcurso, $idalumno, $idturno, $idsalon, $idhorario, $feccreate, $fecmodific);
+        $res = $this->model->InscribirAlumno($idcurso,$idalumno,$idmaestro,$idturno,$idsalon,$idhorario,$idpersonal,$feccreate,$fecmodific);
         if(!empty($res))
         {
             $msg = "Inscripción exitosa";
         } else {
             $msg = "Error al inscribir";
         }
-        $this->view->data = $msg;
-        $this->view->render('estudiantes/inscribir');
+        $this->view->mensaje1 = $msg;
+        $this->view->render('estudiantes/index');
     }
 
     function IAlumnos (){
         $res = $this->model->listcursos();
-		$this->view->data = $res;
+		$this->view->T1 = $res;
+
+        $res = $this->model->listTurno1();
+        $this->view->T2 = $res;
+
+        $res = $this->model->listsalon1();
+        $this->view->T3 = $res;
+
+        $res = $this->model->listhorarios();
+        $this->view->T4 = $res;
+
+        $res = $this->model->listpersonaladm();
+        $this->view->T5 = $res;
+
+        $res = $this->model->listmaestro1();
+        $this->view->T6 = $res;
+
+
         $this->view->render('estudiantes/inscribiralumno');
     }
 
-
+    
     // Asignar alumno a salón
     function AsignarSalon() {
        $idgrados=$_GET['idgrados'];

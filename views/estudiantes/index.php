@@ -12,6 +12,9 @@
 
         <div class="cell small-12 medium-6 large-4">
             <h5>Inscribir al Estudiante</h5>
+            <?php 
+            echo $this->mensaje1;
+            ?>
             <a class="button success rounded-border" href="<?php echo constant('URL') ?>estudiantes/IAlumnos">Inscribir</a>
 
         </div>

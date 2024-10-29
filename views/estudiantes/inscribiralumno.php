@@ -5,18 +5,40 @@
         <h2>Inscribir Alumno</h2>
         <form action="<?php echo constant('URL') ?>estudiantes/InscribirAlumno" method="GET">
             <div class="grid-x grid-padding-x">
-            <div class="large-6 cell">
+            <div class="large-8 cell">
                     <label for="idalumno">ID del Alumno</label>
                     <input type="text" name="idalumno" id="idalumno" placeholder="Ingrese el ID del alumno" required>
                 </div>
+            </div>
+            <div class="grid-x grid-padding-x">
                 <div class="large-6 cell">
                     <label for="idcurso">ID del Curso</label>
                     <select name="idcurso" id="idcurso" required>
                         <option value="" selected disabled>Seleccione un curso...</option>
-                        <!-- Aquí irán los cursos obtenidos de la base de datos -->
-                        <option value="1">Matemáticas</option>
-                        <option value="2">Ciencias</option>
-                        <option value="3">Historia</option>
+                        <?php 
+                        $res = $this->T1;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idcurso'];?>"><?php echo $row['curso'];?></option>
+
+                        <?php   
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="large-6 cell">
+                    <label for="idmaestro">ID del Maestro</label>
+                    <select name="idmaestro" id="idmaestro" required>
+                        <option value="" selected disabled>Seleccione un maestro...</option>
+                        <?php 
+                        $res = $this->T6;
+                        while($row1 = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row1['idmaestro'];?>"><?php echo $row1['nombre']. " " . $row1['apellidos'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -25,10 +47,30 @@
                     <label for="idturno">Turno</label>
                     <select name="idturno" id="idturno" required>
                         <option value="" selected disabled>Seleccione un turno...</option>
-                        <!-- Aquí irán los turnos obtenidos de la base de datos -->
-                        <option value="1">Mañana</option>
-                        <option value="2">Tarde</option>
-                        <option value="3">Noche</option>
+                        <<?php 
+                        $res = $this->T2;
+                        while($row1 = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row1['idturno'];?>"><?php echo $row1['turno'];?></option>
+
+                        <?php   
+                        }
+                        ?>
+                    </select>
+                </div>
+                <div class="large-6 cell">
+                    <label for="idpersonal">ID del Personal Administrativo</label>
+                    <select name="idpersonal" id="idpersonal" required>
+                        <option value="" selected disabled>Seleccione personal administrativo...</option>
+                        <?php 
+                        $res = $this->T5;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idadministrativo'];?>"><?php echo $row['nombre']. " " . $row['apellidos'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -37,21 +79,41 @@
                     <label for="idsalon">Salón</label>
                     <select name="idsalon" id="idsalon" required>
                         <option value="" selected disabled>Seleccione un salón...</option>
-                        <!-- Aquí irán los salones obtenidos de la base de datos -->
-                        <option value="101">101</option>
-                        <option value="102">102</option>
-                        <option value="103">103</option>
+                        <<?php 
+                        $res = $this->T3;
+                        while($row1 = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row1['idsalon'];?>"><?php echo $row1['salon'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="large-6 cell">
                     <label for="idhorario">Horario</label>
                     <select name="idhorario" id="idhorario" required>
                         <option value="" selected disabled>Seleccione un horario...</option>
-                        <!-- Aquí irán los horarios obtenidos de la base de datos -->
-                        <option value="1">8:00 - 10:00</option>
-                        <option value="2">10:00 - 12:00</option>
-                        <option value="3">14:00 - 16:00</option>
+                        <<?php 
+                        $res = $this->T4;
+                        while($row = $res->fetch_array(MYSQLI_ASSOC)){
+                        ?>
+                        <option value="<?php echo $row['idhorario'];?>"><?php echo $row['horario'];?></option>
+
+                        <?php   
+                        }
+                        ?>
                     </select>
+                </div>
+            </div>
+            <div class="grid-x grid-padding-x">
+                <div class="large-6 cell">
+                    <label for="feccrerate">Fecha de Creación</label>
+                    <input type="date" name="feccrerate" id="feccrerate" required>
+                </div>
+                <div class="large-6 cell">
+                    <label for="fecmodific">Fecha de Modificación</label>
+                    <input type="date" name="fecmodific" id="fecmodific" required>
                 </div>
             </div>
             <div class="grid-x grid-padding-x text-center">
