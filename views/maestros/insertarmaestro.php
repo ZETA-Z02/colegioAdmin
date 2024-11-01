@@ -1,10 +1,10 @@
-<?php require('maestros/index.php'); ?>
+<?php require ('views/header.php');?>
 
 <div class="grid-container">
     <div class="grid-x text-center">
         <div class="cell">
             <h2>Ingresar Maestro</h2>
-            <form action="<?php echo constant('URL'); ?>maestros/insertarMaestro" method="POST" enctype="multipart/form-data">
+            <form action="<?php echo constant('URL'); ?>maestros/insertarmaestro" method="POST" enctype="multipart/form-data">
                 <label>ID: <input type="number" name="idmaestro" required></label>
                 <label>Nombre: <input type="text" name="nombre" required></label>
                 <label>Apellidos: <input type="text" name="apellidos" required></label>
@@ -22,7 +22,7 @@
                 <label>Email: <input type="email" name="email" required></label>
                 <label>ID Grado: <input type="number" name="idgrado" required></label>
                 <button type="submit" class="button success">Guardar</button>
-            </form>
+            </form> 
         </div>
     </div>
 </div>
