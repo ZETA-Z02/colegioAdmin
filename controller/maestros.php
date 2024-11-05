@@ -4,10 +4,21 @@ class Maestros extends Controller {
         parent::__construct();
     }
 
+    // Método principal para renderizar la vista index
     public function render() {
-        $this->view->render('maestros/index');
+        try {
+            $datos = $this->model->listaMaestros();
+            $datosd = $this->model->listarDetalles();
+            $this->view->datos = $datos;
+            $this->view->datosd = $datosd;
+            $this->view->render('maestros/index');
+        } catch (Exception $e) {
+            // Manejar el error si es necesario
+            echo "Error: " . $e->getMessage();
+        }
     }
 
+    // Métodos para renderizar vistas específicas
     public function insertarMaestro() {
         $this->view->render('maestros/insertarMaestro');
     }
@@ -29,6 +40,7 @@ class Maestros extends Controller {
                     "nombre" => $row['nombre'],
                     "apellidos" => $row['apellidos'],
                     "fecNacimiento" => $row['fecNacimiento'],
+                    "foto" => $row['foto'],
                     "sexo" => $row['sexo'],
                     "especialidad" => $row['especialidad'],
                     "ciudad" => $row['ciudad'],
@@ -45,11 +57,19 @@ class Maestros extends Controller {
 
     public function insertarMaestros() {
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         try {
-            if (isset($_POST['idmaestro'], $_POST['nombre'], $_POST['apellidos'], 
-                     $_POST['fecNacimiento'], $_POST['foto'], $_POST['sexo'], 
-                     $_POST['especialidad'], $_POST['ciudad'], $_POST['telefono'], 
-                     $_POST['email'], $_POST['idgrado'])) {
+            if (isset($_POST['idmaestro']) && 
+                isset($_POST['nombre']) && 
+                isset($_POST['apellidos']) && 
+                isset($_POST['fecNacimiento']) && 
+                isset($_POST['foto']) && 
+                isset($_POST['sexo']) && 
+                isset($_POST['especialidad']) && 
+                isset($_POST['ciudad']) && 
+                isset($_POST['telefono']) && 
+                isset($_POST['email']) && 
+                isset($_POST['idgrado'])) {
 
                 $idmaestro = filter_var($_POST['idmaestro'], FILTER_SANITIZE_NUMBER_INT);
                 $nombre = filter_var($_POST['nombre'], FILTER_SANITIZE_STRING);
@@ -60,18 +80,18 @@ class Maestros extends Controller {
                 $especialidad = filter_var($_POST['especialidad'], FILTER_SANITIZE_STRING);
                 $ciudad = filter_var($_POST['ciudad'], FILTER_SANITIZE_STRING);
                 $telefono = filter_var($_POST['telefono'], FILTER_SANITIZE_NUMBER_INT);
-                $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+                $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
                 $idgrado = filter_var($_POST['idgrado'], FILTER_SANITIZE_NUMBER_INT);
     
                 if ($this->model->insertarMaestros($idmaestro, $nombre, $apellidos, 
                     $fecNacimiento, $foto, $sexo, $especialidad, $ciudad, 
                     $telefono, $email, $idgrado)) {
-                    echo json_encode(["status" => "success", "message" => "Maestro insertado correctamente."]);
+                    echo json_encode(["status" => "success"]);
                 } else {
-                    echo json_encode(["status" => "error", "message" => "Error al insertar el maestro."]);
+                    echo json_encode(["status" => "error", "message" => "Error al insertar"]);
                 }
             } else {
-                echo json_encode(["status" => "error", "message" => "Faltan datos requeridos."]);
+                echo json_encode(["status" => "error", "message" => "Datos incompletos"]);
             }
         } catch (Exception $e) {
             echo json_encode(["status" => "error", "message" => "Error en el servidor"]);
@@ -80,25 +100,25 @@ class Maestros extends Controller {
 
     public function eliminarMaestros() {
         header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
         try {
             if (isset($_POST['idmaestro'])) {
                 $idmaestro = filter_var($_POST['idmaestro'], FILTER_SANITIZE_NUMBER_INT);
     
                 if ($this->model->eliminarMaestros($idmaestro)) {
-                    echo json_encode(["status" => "success", "message" => "Maestro eliminado correctamente."]);
+                    echo json_encode(["status" => "success"]);
                 } else {
-                    echo json_encode(["status" => "error", "message" => "Error al eliminar el maestro."]);
+                    echo json_encode(["status" => "error", "message" => "Error al eliminar"]);
                 }
             } else {
-                echo json_encode(["status" => "error", "message" => "ID del maestro requerido."]);
+                echo json_encode(["status" => "error", "message" => "ID no proporcionado"]);
             }
         } catch (Exception $e) {
             echo json_encode(["status" => "error", "message" => "Error en el servidor"]);
         }
     }
 
-    // Controlador para maestros detalle
-
+    // Métodos para Detalles de Maestros
     public function listarDetalle() {
         $this->view->render('maestros/listarDetalles');
     }
@@ -110,58 +130,69 @@ class Maestros extends Controller {
     public function eliminarDetalle() {
         $this->view->render('maestros/eliminarDetalles');
     }
-    public function listarDetalles() { // Cambiado a camelCase
-        header('Content-Type: application/json');
-        header('Access-Control-Allow-Origin: *'); // Permitir CORS
-        
-        $datosd = $this->model->listarDetalles();
-        $json = [];
 
-        while ($row = mysqli_fetch_assoc($datosd)) {
-            $json[] = array(
-                "idmaestro_detalle" => $row['idmaestro_detalle'],
-                "idmaestro" => $row['idmaestro'],
-                "acercade" => $row['acercade']
-            );
-        }
-        echo json_encode($json);
-    }
-
-    public function insertarDetalles() { // Cambiado a camelCase
+    public function listarDetalles() {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
+        try {
+            $datosd = $this->model->listarDetalles();
+            $json = [];
 
-        // Corregido para coincidir con los datos enviados desde el JS
-        if (isset($_POST['idmaestro_detalle'], $_POST['idmaestro'], $_POST['acercade'])) {
-            $idmaestro_detalle = $_POST['idmaestro_detalle'];
-            $idmaestro = $_POST['idmaestro'];
-            $acercade = $_POST['acercade'];
-
-            if ($this->model->insertarDetalles($idmaestro_detalle, $idmaestro, $acercade)) {
-                echo json_encode(["status" => "success", "message" => "Detalle del maestro insertado correctamente."]);
-            } else {
-                echo json_encode(["status" => "error", "message" => "Error al insertar el detalle del maestro."]);
+            while ($row = mysqli_fetch_assoc($datosd)) {
+                $json[] = array(
+                    "idmaestro_detalle" => $row['idmaestro_detalle'],
+                    "idmaestro" => $row['idmaestro'],
+                    "acercade" => $row['acercade']
+                );
             }
-        } else {
-            echo json_encode(["status" => "error", "message" => "Faltan datos requeridos."]);
+            echo json_encode($json);
+        } catch (Exception $e) {
+            echo json_encode(["status" => "error", "message" => "Error al obtener detalles"]);
         }
     }
 
-    public function eliminarDetalles() { // Cambiado a camelCase
+    public function insertarDetalles() {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
+        try {
+            if (isset($_POST['idmaestro_detalle']) && 
+                isset($_POST['idmaestro']) && 
+                isset($_POST['acercade'])) {
 
-        // Corregido para coincidir con el dato enviado desde el JS
-        if (isset($_POST['id'])) { // El JS envía 'id', no 'idmaestro_detalle'
-            $idmaestro_detalle = $_POST['id'];
+                $idmaestro_detalle = filter_var($_POST['idmaestro_detalle'], FILTER_SANITIZE_NUMBER_INT);
+                $idmaestro = filter_var($_POST['idmaestro'], FILTER_SANITIZE_NUMBER_INT);
+                $acercade = filter_var($_POST['acercade'], FILTER_SANITIZE_STRING);
 
-            if ($this->model->eliminarDetalles($idmaestro_detalle)) {
-                echo json_encode(["status" => "success", "message" => "Detalle del maestro eliminado correctamente."]);
+                if ($this->model->insertarDetalles($idmaestro_detalle, $idmaestro, $acercade)) {
+                    echo json_encode(["status" => "success"]);
+                } else {
+                    echo json_encode(["status" => "error", "message" => "Error al insertar detalle"]);
+                }
             } else {
-                echo json_encode(["status" => "error", "message" => "Error al eliminar el detalle del maestro."]);
+                echo json_encode(["status" => "error", "message" => "Datos incompletos"]);
             }
-        } else {
-            echo json_encode(["status" => "error", "message" => "ID del detalle del maestro requerido."]);
+        } catch (Exception $e) {
+            echo json_encode(["status" => "error", "message" => "Error en el servidor"]);
+        }
+    }
+
+    public function eliminarDetalles() {
+        header('Content-Type: application/json');
+        header('Access-Control-Allow-Origin: *');
+        try {
+            if (isset($_POST['id'])) {
+                $idmaestro_detalle = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
+
+                if ($this->model->eliminarDetalles($idmaestro_detalle)) {
+                    echo json_encode(["status" => "success"]);
+                } else {
+                    echo json_encode(["status" => "error", "message" => "Error al eliminar detalle"]);
+                }
+            } else {
+                echo json_encode(["status" => "error", "message" => "ID no proporcionado"]);
+            }
+        } catch (Exception $e) {
+            echo json_encode(["status" => "error", "message" => "Error en el servidor"]);
         }
     }
 }
