@@ -5,7 +5,7 @@
         <div class="cell">
             <h2>Eliminar Detalle de Maestro</h2>
             
-            <form id="eliminarDetalleForm">
+            <form action="<?php echo constant('URL'); ?>maestros/eliminarDetalles" method="POST" enctype="multipart/form-data">
                 <label for="id">ID Detalle:</label>
                 <input type="number" 
                        id="id" 

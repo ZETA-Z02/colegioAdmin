@@ -33,7 +33,7 @@ $datosd = isset($this->datosd) ? $this->datosd : null;
             <div class="card">
                 <div class="card-section">
                     <h5>Eliminar Maestros</h5>
-                    <a class="button expanded alert hollow rounded" href="<?php echo constant('URL'); ?>maestros/eliminarMaestros">
+                    <a class="button expanded alert hollow rounded" href="<?php echo constant('URL'); ?>maestros/eliminarMaestro">
                         <i class="fas fa-user-minus"></i> Eliminar
                     </a>
                 </div>
@@ -43,7 +43,7 @@ $datosd = isset($this->datosd) ? $this->datosd : null;
             <div class="card">
                 <div class="card-section">
                     <h5>Lista Maestros</h5>
-                    <a class="button expanded secondary hollow rounded" href="<?php echo constant('URL'); ?>maestros/listaMaestros">
+                    <a class="button expanded secondary hollow rounded" href="<?php echo constant('URL'); ?>maestros/index">
                         <i class="fas fa-list"></i> Lista
                     </a>
                 </div>
@@ -120,7 +120,7 @@ $datosd = isset($this->datosd) ? $this->datosd : null;
         <div class="card">
             <div class="card-section">
                 <h5>Ingresar Detalle</h5>
-                <a class="button expanded success hollow rounded" href="<?php echo constant('URL'); ?>maestros/insertarDetalles">
+                <a class="button expanded success hollow rounded" href="<?php echo constant('URL'); ?>maestros/insertarDetalle">
                     <i class="fas fa-plus-circle"></i> Nuevo
                 </a>
             </div>
@@ -130,7 +130,7 @@ $datosd = isset($this->datosd) ? $this->datosd : null;
         <div class="card">
             <div class="card-section">
                 <h5>Eliminar Detalle</h5>
-                <a class="button expanded alert hollow rounded" href="<?php echo constant('URL'); ?>maestros/eliminarDetalles">
+                <a class="button expanded alert hollow rounded" href="<?php echo constant('URL'); ?>maestros/eliminarDetalle">
                     <i class="fas fa-minus-circle"></i> Eliminar
                 </a>
             </div>
@@ -140,7 +140,7 @@ $datosd = isset($this->datosd) ? $this->datosd : null;
         <div class="card">
             <div class="card-section">
                 <h5>Lista Detalles</h5>
-                <a class="button expanded secondary hollow rounded" href="<?php echo constant('URL'); ?>maestros/listarDetalles">
+                <a class="button expanded secondary hollow rounded" href="<?php echo constant('URL'); ?>maestros/indexs">
                     <i class="fas fa-list-alt"></i> Lista
                 </a>
             </div>

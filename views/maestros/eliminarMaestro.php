@@ -1,9 +1,11 @@
+<?php require('views/header.php'); ?>
+
 <div class="grid-container">
     <div class="grid-x text-center">
         <div class="cell">
             <h2>Eliminar Maestro</h2>
             
-            <form id="eliminarMaestroForm" onsubmit="return false;">
+            <form action="<?php echo constant('URL'); ?>maestros/eliminarMaestros" method="POST" enctype="multipart/form-data">
                 <label for="idmaestro">ID Maestro:</label>
                 <input type="number"
                        id="idmaestro"

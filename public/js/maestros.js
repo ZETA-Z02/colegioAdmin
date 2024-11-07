@@ -142,12 +142,12 @@ function eliminarDetalles() {
       $.ajax({
         type: "POST",
         url: `http://${host}/colegioAdmin/maestros/eliminarDetalles`, 
-        data: { id: id }, 
+        data: { idmaestro_detalle: idmaestro_detalle }, 
         success: function (response) {
           let result = JSON.parse(response);
           if(result.status === "success") {
             alert("Eliminado correctamente");
-            $("#id").val(''); // Limpia el input
+            $("#idmaestro_detalle").val(''); // Limpia el input
             listarDetalles(); 
           } else {
             alert(result.message || "Error al eliminar");
