@@ -101,20 +101,50 @@ class Maestros extends Controller {
     public function eliminarMaestros() {
         header('Content-Type: application/json');
         header('Access-Control-Allow-Origin: *');
+        
+        // Debug
+        error_log("POST data: " . print_r($_POST, true));
+        
         try {
-            if (isset($_POST['idmaestro'])) {
-                $idmaestro = filter_var($_POST['idmaestro'], FILTER_SANITIZE_NUMBER_INT);
+            if (!isset($_POST['idmaestro']) || empty($_POST['idmaestro'])) {
+                error_log("ID no proporcionado");
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "ID no proporcionado"
+                ]);
+                return;
+            }
     
-                if ($this->model->eliminarMaestros($idmaestro)) {
-                    echo json_encode(["status" => "success"]);
-                } else {
-                    echo json_encode(["status" => "error", "message" => "Error al eliminar"]);
-                }
+            $idmaestro = filter_var($_POST['idmaestro'], FILTER_SANITIZE_NUMBER_INT);
+            
+            if (!$idmaestro) {
+                error_log("ID inválido");
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "ID inválido"
+                ]);
+                return;
+            }
+    
+            error_log("Intentando eliminar maestro con ID: " . $idmaestro);
+            
+            if ($this->model->eliminarMaestros($idmaestro)) {
+                echo json_encode([
+                    "status" => "success",
+                    "message" => "Maestro eliminado correctamente"
+                ]);
             } else {
-                echo json_encode(["status" => "error", "message" => "ID no proporcionado"]);
+                echo json_encode([
+                    "status" => "error",
+                    "message" => "Error al eliminar el maestro"
+                ]);
             }
         } catch (Exception $e) {
-            echo json_encode(["status" => "error", "message" => "Error en el servidor"]);
+            error_log("Error en eliminarMaestros: " . $e->getMessage());
+            echo json_encode([
+                "status" => "error",
+                "message" => "Error en el servidor: " . $e->getMessage()
+            ]);
         }
     }
 

@@ -39,20 +39,28 @@ function listaMaestros() {
 
 function eliminarMaestros() {
   $(document).on("click", ".eliminarMaestros", function () {
-    let idmaestro = $(this).closest("tr").attr("mostrandoId");
+      let idmaestro = $("#idmaestro").val();
+      
+      if(!idmaestro) {
+          alert("Por favor ingrese un ID");
+          return;
+      }
 
-    $.ajax({
-      type: "POST",
-      url: `http://${host}/colegioAdmin/maestros/eliminarMaestros/`,
-      data: { idmaestro: idmaestro },  // Cambiar 'datos' por 'data'
-      success: function (response) {
-        alert("Eliminado correctamente");
-        listaMaestros();
-      },
-      error: function (error) {
-        console.log("Error al eliminar el maestro:", error);
-      },
-    });
+      if(confirm("¿Está seguro de eliminar este maestro?")) {
+          $.ajax({
+              type: "POST",
+              url: `http://${host}/colegioAdmin/maestros/eliminarMaestros/`,
+              data: { idmaestro: idmaestro },
+              success: function (response) {
+                  alert("Eliminado correctamente");
+                  window.location.href = `http://${host}/colegioAdmin/maestros/`;
+              },
+              error: function (error) {
+                  console.log("Error al eliminar:", error);
+                  alert("Error al eliminar el maestro");
+              }
+          });
+      }
   });
 }
 
@@ -122,21 +130,36 @@ function listarDetalles() {
 }
 
 function eliminarDetalles() {
-    $(document).on("click", ".eliminarDetalles", function () { 
-      let id = $(this).closest("tr").attr("id"); 
+  $(document).on("click", ".eliminarDetalles", function () { 
+    let id = $("#id").val(); // Obtiene el valor del input
+    
+    if(!id) {
+      alert("Por favor ingrese un ID");
+      return;
+    }
+
+    if(confirm('¿Está seguro de que desea eliminar este detalle?')) {
       $.ajax({
         type: "POST",
         url: `http://${host}/colegioAdmin/maestros/eliminarDetalles`, 
-        data: { id }, 
+        data: { id: id }, 
         success: function (response) {
-          alert("Eliminado correctamente");
-          listarDetalles(); 
+          let result = JSON.parse(response);
+          if(result.status === "success") {
+            alert("Eliminado correctamente");
+            $("#id").val(''); // Limpia el input
+            listarDetalles(); 
+          } else {
+            alert(result.message || "Error al eliminar");
+          }
         },
         error: function (error) { 
-          console.log("Error sl eliminar detalles:" + error);
+          console.log("Error al eliminar detalles:", error);
+          alert("Error al eliminar el detalle");
         },
       });
-    });
+    }
+  });
 }
 
 function insertarDetalles() {
@@ -146,7 +169,7 @@ function insertarDetalles() {
     let acercade = $("#acercade").val(); 
     $.ajax({
         type: "POST",
-        url: `http://${host}/colegioAdmin/maestros/insertarDetalles`, 
+        url: `http://${host}/colegioAdmin/maestros/insertarDetalles/`, 
         data: { idmaestro_detalle, idmaestro, acercade }, 
         success: function (response) {
             alert("Creado correctamente");
