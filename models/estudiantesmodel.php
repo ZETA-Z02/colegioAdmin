@@ -103,13 +103,18 @@ class EstudiantesModel extends Model {
 
     //OBTENER INFORMACION DEL  ALUMNO
 
-    function ObtenerInformacionAlumno($idAlumno,$idCurso,$idSalon,$idmaestro) {
-
-        #SELECT * FROM alumnos WHERE codigo = '$codigo';
-        $sql = "SELECT * FROM alumnos WHERE idAlumno = '$idAlumno', '$idCurso','$idSalon','$idmaestro';";
+    function ObtenerInformacionAlumno() {
+        $sql = "SELECT * FROM alumnos ;";
         $data = $this->conn->ConsultaCon($sql);
         return $data;
     }
+
+    function detallealumno($idAlumno){
+        $sql = "SELECT * FROM alumnos where idalumno = $idAlumno ;";
+        $data = $this->conn->ConsultaArray($sql);
+        return $data;
+    }
+
     
     // Guardar configuración de mensaje
     function GuardarMensaje($mensaje) {
@@ -118,11 +123,5 @@ class EstudiantesModel extends Model {
         return $res;
     }
 
-    // Escribirse a curso
-    function EscribirseCurso($idAlumno, $idCurso) {
-        $sql = "INSERT INTO cursos_inscripciones (idAlumno, idCurso) VALUES ('$idAlumno', '$idCurso');";
-        $res = $this->conn->ConsultaSin($sql);
-        return $res;
-} 
 }
 ?>

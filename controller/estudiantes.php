@@ -148,23 +148,20 @@ class Estudiantes extends Controller {
     }
 
     // Ver información del alumno
-    function InformacionAlumno() {
-        $idAlumno = $_POST['idAlumno'];
-        $idCurso = $_POST['idCurso'];
-        $idSalon = $_POST['idSalon'];
-        $idmaestro = $_POST['idmaestro'];
-
-        $res = $this->model->ObtenerInformacionAlumno($idAlumno,$idCurso,$idSalon,$idmaestro);
-        if ($res) {
-            $this->view->data = $res;
-        } else {
-            $this->view->data = "No se encontró información del alumno.";
-        }
-        $this->view->render('estudiantes/informacion');
-    }
 
     function InfoAlumnos(){
+        $datos = $this->model->ObtenerInformacionAlumno();
+        $this->view->data = $datos;
+
+
         $this->view->render('estudiantes/informacionalumno');
+    }
+
+    function detallealumno ($nparametro= null){
+        $idAlumno = $nparametro[0];
+        $data = $this->model->detallealumno($idAlumno);
+        $this->view->data = $data;
+        $this->view->render('estudiantes/infoalumno');
     }
 
     // Configuración de mensajes
@@ -178,21 +175,6 @@ class Estudiantes extends Controller {
         }
         $this->view->data = $msg;
         $this->view->render('estudiantes/configuracion');
-    }
-
-
-    // Escribirse a cursos
-    function EscribirseCurso() {
-        $idAlumno = $_POST['idAlumno'];
-        $idCurso = $_POST['idCurso'];
-        
-        if ($this->model->EscribirseCurso($idAlumno, $idCurso)) {
-            $msg = "Inscripción al curso exitosa";
-        } else {
-            $msg = "Error al inscribirse al curso";
-        }
-        $this->view->data = $msg;
-        $this->view->render('estudiantes/escribirse');
     }
 }
 ?>

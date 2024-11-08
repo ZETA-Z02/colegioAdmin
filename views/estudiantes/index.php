@@ -37,12 +37,6 @@
             <h5>Configuración de Mensaje</h5>
             <a class="button" href="configuracion_mensaje.php">Configurar</a>
         </div>
-
-        <div class="cell small-12 medium-6 large-4">
-            <h5>Escribirse a Cursos</h5>
-            <a class="button" href="escribirse_cursos.php">Escribirse</a>
-        </div>
-
         
 	</div>
 
