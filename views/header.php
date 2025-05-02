@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Katari Price</title>
+  <title>Truji and David engineerr</title>
   <!-- FAVICON -->
   <link rel="shortcut icon" href="<?php echo constant('URL') . 'public/img/favicon.ico' ?>">
   <!-- FOUNDATION CSS-PRINCIPAL Y NECESARIO -->

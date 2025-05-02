@@ -2,7 +2,7 @@
 
 define('URL', 'http://localhost/colegioAdmin/');
 
-define('COMPANY', 'Katari A&C');
+define('COMPANY', 'Trujillano J&E');
 define('HOST', 'localhost');
 define('USER', 'root');
 define('DB', 'colegio');

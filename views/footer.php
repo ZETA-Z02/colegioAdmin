@@ -11,9 +11,9 @@
 <div class="grid-x align-center">
   <small class="copyright">
     <span class=""> ©
-      KATARI SOFTWARE
+      TRUJILLANO SOFTWARE
     </span>
-    Copyrigth Katari. Inc.</small>
+    Copyrigth Trujillano. Inc.</small>
   <small class="copyright">Todos los derechos reservados.</small>
 </div>
 

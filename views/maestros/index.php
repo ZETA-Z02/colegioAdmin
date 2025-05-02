@@ -186,7 +186,6 @@ $datosd = isset($this->datosd) ? $this->datosd : null;
 
 <footer class="grid-x align-center margin-top-2 margin-bottom-1">
     <div class="cell small-12 text-center">
-        <small class="copyright">© KATARI SOFTWARE</small>
-        <small class="copyright">Copyright Katari Inc. Todos los derechos reservados.</small>
+        <?php require('views/footer.php'); ?>
     </div>
 </footer>
